@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/tvBrand"
-        android:layout_width="333dp"
+        android:layout_width="335dp"
         android:layout_height="95dp"
         android:textColor="@color/backMain"
         android:text="@string/vvGames"

@@ -14,16 +14,12 @@ public class Adaptador extends BaseAdapter {
     public Adaptador(Context context){
         letras=new String[27];
         for(int i=0;i<letras.length;i++){
-            //HARDCODE
             if(i==14){
-                letras[i]="Ñ";
+                letras[i]=context.getResources().getString(R.string.enie);
             }else{
-                //HARDCODE
-                if(i>14) letras[i]=""+(char)((i-1)+'A');
-                else letras[i]=""+(char)(i+'A');
+                if(i>14) letras[i]=context.getResources().getString(R.string.vacio)+(char)(context.getResources().getString(R.string.letra_a).charAt(0)+(i-1));
+                else letras[i]=context.getResources().getString(R.string.vacio)+(char)(context.getResources().getString(R.string.letra_a).charAt(0)+(i));
             }
-
-
         }
         inflater=LayoutInflater.from(context);
     }

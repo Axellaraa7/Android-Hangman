@@ -107,35 +107,34 @@
 
     <GridView
         android:id="@+id/gvLetras"
-        android:layout_width="0dp"
-        android:layout_height="235dp"
+        android:layout_width="355dp"
+        android:layout_height="229dp"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
         android:numColumns="9"
         android:padding="5dp"
         android:stretchMode="columnWidth"
         android:verticalSpacing="5dp"
-        android:horizontalSpacing="5dp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llWord"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintVertical_bias="0.906" />
 
     <LinearLayout
         android:id="@+id/llWord"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCuerda"
-        app:layout_constraintVertical_bias="0.276">
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0.281"></LinearLayout>
 
     <TextView
         android:id="@+id/tvClave"

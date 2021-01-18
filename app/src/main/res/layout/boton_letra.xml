@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btnLetra"
+    style="@android:style/Widget.Holo.Light.Button"
+    android:layout_width="45dp"
+    android:layout_height="70dp"
+    android:onClick="letraSelected"
+    android:textAlignment="center"
+    android:textColor="@color/black"
+    android:textSize="18sp">
+
+</Button>

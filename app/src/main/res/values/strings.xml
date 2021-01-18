@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Ahorcado</string>
+
+    <!-- Menu principal -->
+    <string name="play">JUGAR</string>
+    <string name="info">INFORMACION</string>
+    <string name="vvGames">VvGames</string>
+    <string name="hangMan">AHORCADO</string>
+    <string name="MALA">Lara Avila Mauricio Axel</string>
+
+    <!--Content Descriptions -->
+    <string name="head">Cabeza</string>
+    <string name="bIzq">Brazo Izq</string>
+    <string name="bDer">Brazo Der</string>
+    <string name="pIzq">Pierna Izq</string>
+    <string name="pDer">Pierna Der</string>
+    <string name="cuerpo">Cuerpo</string>
+
+    <!-- Juego-->
+    <string name="clasico">Clasico</string>
+    <!--Integers-->
+    <integer name="secSplash">2000</integer>
+
+
+</resources>

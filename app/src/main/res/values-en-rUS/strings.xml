@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ahorcado</string>
+    <string name="play">PLAY</string>
+    <string name="info">INFORMATION</string>
+    <string name="hangMan">HANGMAN</string>
+    <string name="winner">Winner!! :)</string>
+    <string name="playAgain">Wanna play again?</string>
+    <string name="loser">Loser!! :(</string>
+    <string name="salir">Main menu</string>
+</resources>

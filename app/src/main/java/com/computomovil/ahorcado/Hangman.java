@@ -12,25 +12,36 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Random;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Hangman extends AppCompatActivity {
 
-    //HARDCODE
-    private String[] words={"kamila","axel","tchaikovsky","beethoven","mozart"};
-    //HARDCODE
-    private String clave="clasico";
-    private String actualWord; //Guardamos la palabra para que no se repita
-    protected int lifes=6; //Numero de vidas: 6
+    private String category;
+    private String actualWord; //Guardamos la palabra
+
+    private int lifes=6; //Numero de vidas: 6
     private TextView[] palabra; //Arreglo de TextView para la palabra a adivina
-    private Random rnd=new Random(); //Palabra aleatoria
     private LinearLayout llWord; //Referencia al linearLayout
     private Adaptador adaptador; //Referencia al adaptador
     private GridView gvLetras; //Referencia al GridView
-    protected int sizeWord=0; // Tamaño de la palabra
+    private int sizeWord=0; // Tamaño de la palabra
     private ImageView[] toy=new ImageView[lifes]; //Referencia al muñeco
-    protected int part=0;
+    private int part=0;//contador del cuerpo dl muñeco
+    private TextView tvClave;
+
+    private String url;
+    private RequestQueue queue;
+    private JsonObjectRequest jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +49,7 @@ public class Hangman extends AppCompatActivity {
         setContentView(R.layout.activity_hangman);
         llWord=findViewById(R.id.llWord); //Conexion de linearLayout
         gvLetras=findViewById(R.id.gvLetras); //Conexion de gridview
-
+        tvClave=findViewById(R.id.tvClave);
         //Conexion de ImageView
         toy[0]=findViewById(R.id.ivHead);
         toy[1]=findViewById(R.id.ivCuerpo);
@@ -48,17 +59,11 @@ public class Hangman extends AppCompatActivity {
         toy[5]=findViewById(R.id.ivPder);
 
         //Método jugar
-        jugar();
+        Conexion();
+
     }
 
     private void jugar(){
-        //Asignamos una palabra aleatoria
-        String word=words[rnd.nextInt(words.length)].toUpperCase() ;
-        //Comprobamos que la palabra no sea la anterior
-        while(word.equals(actualWord)) word=words[rnd.nextInt(words.length)].toUpperCase();
-        //Asignamos la nueva palabra a la palabra actual
-        actualWord=word;
-        //Instanciamos el arreglo de TextViews
         palabra=new TextView[actualWord.length()];
         //Limpiamos el LinearLayout
         llWord.removeAllViews();
@@ -83,6 +88,7 @@ public class Hangman extends AppCompatActivity {
             //Añadimos al layout el textView
             llWord.addView(palabra[i]);
         }
+        tvClave.setText(category);
         //Instanciamos el adaptador
         adaptador=new Adaptador(this);
         //Asignamos el adaptador al gridView
@@ -114,7 +120,7 @@ public class Hangman extends AppCompatActivity {
                 ad.setPositiveButton(getResources().getString(R.string.playAgain), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Hangman.this.jugar();
+                        Hangman.this.Conexion();
                     }
                 });
                 ad.setNegativeButton(getResources().getString(R.string.salir), new DialogInterface.OnClickListener() {
@@ -136,11 +142,12 @@ public class Hangman extends AppCompatActivity {
             AlertDialog.Builder ad=new AlertDialog.Builder(this);
             //HARDCODE
             ad.setTitle(getResources().getString(R.string.loser));
+            ad.setMessage(getResources().getString(R.string.respuesta)+actualWord);
             //HARDCODE
             ad.setPositiveButton(getResources().getString(R.string.playAgain), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Hangman.this.jugar();
+                    Hangman.this.Conexion();
                 }
             });
             ad.setNegativeButton(getResources().getString(R.string.salir), new DialogInterface.OnClickListener() {
@@ -168,4 +175,30 @@ public class Hangman extends AppCompatActivity {
             toy[i].setVisibility(View.INVISIBLE);
         }
     }
+
+    public void Conexion(){
+        queue= Volley.newRequestQueue(this);
+        url=getResources().getString(R.string.url);
+        jsonObject=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    category=response.getString(getResources().getString(R.string.category)).toUpperCase();
+                    actualWord=response.getString(getResources().getString(R.string.word)).toUpperCase();
+                    jugar();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(jsonObject);
+    }
+
+
+
 }

@@ -8,4 +8,5 @@
     <string name="playAgain">Wanna play again?</string>
     <string name="loser">Loser!! :(</string>
     <string name="salir">Main menu</string>
+    <string name="respuesta">"The answer was: "</string>
 </resources>

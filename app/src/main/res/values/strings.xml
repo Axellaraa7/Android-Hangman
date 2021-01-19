@@ -27,11 +27,18 @@
     <string name="playAgain">Jugar de nuevo?</string>
     <string name="loser">Perdiste! :(</string>
     <string name="salir">Menú Principal</string>
+
     <!--Integers-->
     <integer name="secSplash">2000</integer>
     <integer name="lifes">6</integer>
     <integer name="sizeLetter">28</integer>
     <integer name="sizeLetterIni">1</integer>
+
+    <!--Conexion-->
+    <string name="url" translatable="false">https://www.serverbpw.com/cm/2021-1/hangman.php</string>
+    <string name="word" translatable="false">word</string>
+    <string name="category" translatable="false">category</string>
+    <string name="respuesta">"La respuesta era: "</string>
 
 
 </resources>

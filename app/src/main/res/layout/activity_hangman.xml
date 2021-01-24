@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ctHang"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_game"
@@ -9,9 +10,9 @@
 
     <ImageView
         android:id="@+id/ivCuerda"
-        android:contentDescription="@string/hangMan"
         android:layout_width="330dp"
         android:layout_height="200dp"
+        android:contentDescription="@string/hangMan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -30,8 +31,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.198"
+        app:layout_constraintTop_toTopOf="@+id/ivCuerda"
+        app:layout_constraintVertical_bias="0.182"
         app:srcCompat="@drawable/head_1" />
 
     <ImageView
@@ -45,8 +46,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.312"
+        app:layout_constraintTop_toTopOf="@+id/ivHead"
+        app:layout_constraintVertical_bias="0.153"
         app:srcCompat="@drawable/body" />
 
     <ImageView
@@ -59,8 +60,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301"
+        app:layout_constraintTop_toTopOf="@+id/ivHead"
+        app:layout_constraintVertical_bias="0.146"
         app:srcCompat="@drawable/arm_left" />
 
     <ImageView
@@ -71,10 +72,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301"
+        app:layout_constraintTop_toTopOf="@+id/ivHead"
+        app:layout_constraintVertical_bias="0.146"
         app:srcCompat="@drawable/arm_right" />
 
     <ImageView
@@ -85,10 +86,10 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.401"
+        app:layout_constraintTop_toTopOf="@+id/ivHead"
+        app:layout_constraintVertical_bias="0.259"
         app:srcCompat="@drawable/leg_left" />
 
     <ImageView
@@ -101,8 +102,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.401"
+        app:layout_constraintTop_toTopOf="@+id/ivHead"
+        app:layout_constraintVertical_bias="0.249"
         app:srcCompat="@drawable/leg_right" />
 
     <GridView
@@ -149,6 +150,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCuerda"
         app:layout_constraintVertical_bias="0.615" />
+
+    <ImageButton
+        android:id="@+id/ivSound"
+        android:layout_width="52dp"
+        android:layout_height="50dp"
+        android:background="@drawable/volume_off"
+        android:onClick="disableSound"
+        app:layout_constraintBottom_toTopOf="@+id/llWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.77"
+        app:layout_constraintStart_toStartOf="@+id/ivPizq"
+        app:layout_constraintTop_toBottomOf="@+id/ivCuerda"
+        app:layout_constraintVertical_bias="0.489" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,13 +2,16 @@ package com.computomovil.ahorcado;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ public class Hangman extends AppCompatActivity {
 
     private String category;
     private String actualWord; //Guardamos la palabra
+    private boolean ban=true;
 
     private int lifes=6; //Numero de vidas: 6
     private TextView[] palabra; //Arreglo de TextView para la palabra a adivina
@@ -42,14 +46,19 @@ public class Hangman extends AppCompatActivity {
     private String url;
     private RequestQueue queue;
     private JsonObjectRequest jsonObject;
+    private ImageButton ivSound;
+
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman);
+
         llWord=findViewById(R.id.llWord); //Conexion de linearLayout
         gvLetras=findViewById(R.id.gvLetras); //Conexion de gridview
         tvClave=findViewById(R.id.tvClave);
+        ivSound=findViewById(R.id.ivSound);
         //Conexion de ImageView
         toy[0]=findViewById(R.id.ivHead);
         toy[1]=findViewById(R.id.ivCuerpo);
@@ -64,6 +73,7 @@ public class Hangman extends AppCompatActivity {
     }
 
     private void jugar(){
+
         palabra=new TextView[actualWord.length()];
         //Limpiamos el LinearLayout
         llWord.removeAllViews();
@@ -114,6 +124,9 @@ public class Hangman extends AppCompatActivity {
 
         if(ban){
             if(sizeWord==actualWord.length()){
+                mp.stop();
+                mp=MediaPlayer.create(this,R.raw.aleluyah);
+                mp.start();
                 setDisabled();
                 AlertDialog.Builder ad=new AlertDialog.Builder(this);
                 ad.setTitle(getResources().getString(R.string.winner));
@@ -137,6 +150,9 @@ public class Hangman extends AppCompatActivity {
             toy[part].setVisibility(View.VISIBLE);
             part++;
         }else{
+            mp.stop();
+            mp=MediaPlayer.create(this,R.raw.risa_demoniaca);
+            mp.start();
             toy[part].setVisibility(View.VISIBLE);
             setDisabled();
             AlertDialog.Builder ad=new AlertDialog.Builder(this);
@@ -177,6 +193,10 @@ public class Hangman extends AppCompatActivity {
     }
 
     public void Conexion(){
+        if(ban){
+            mp=MediaPlayer.create(this,R.raw.sonido_espera);
+            mp.start();
+        }else mp.stop();
         queue= Volley.newRequestQueue(this);
         url=getResources().getString(R.string.url);
         jsonObject=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -199,6 +219,22 @@ public class Hangman extends AppCompatActivity {
         queue.add(jsonObject);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mp.stop();
+    }
 
-
+    public void disableSound(View view) {
+        if(ban){
+            ban=false;
+            ivSound.setBackgroundResource(R.drawable.volume_up);
+            mp.stop();
+        }else{
+            ban=true;
+            ivSound.setBackgroundResource(R.drawable.volume_off);
+            mp=MediaPlayer.create(this,R.raw.sonido_espera);
+            mp.start();
+        }
+    }
 }

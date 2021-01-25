@@ -32,9 +32,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        mp=MediaPlayer.create(this,R.raw.sonido_espera);
+        mp.start();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         mp.stop();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mp.stop();
+    }
 }

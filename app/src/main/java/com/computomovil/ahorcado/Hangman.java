@@ -219,12 +219,6 @@ public class Hangman extends AppCompatActivity {
         queue.add(jsonObject);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mp.stop();
-    }
-
     public void disableSound(View view) {
         if(ban){
             ban=false;
@@ -236,5 +230,17 @@ public class Hangman extends AppCompatActivity {
             mp=MediaPlayer.create(this,R.raw.sonido_espera);
             mp.start();
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mp.stop();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mp.stop();
     }
 }

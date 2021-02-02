@@ -157,6 +157,7 @@
         android:layout_height="50dp"
         android:background="@drawable/volume_off"
         android:onClick="disableSound"
+        android:contentDescription="@string/vacio"
         app:layout_constraintBottom_toTopOf="@+id/llWord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.77"

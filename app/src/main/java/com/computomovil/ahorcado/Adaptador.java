@@ -14,11 +14,11 @@ public class Adaptador extends BaseAdapter {
     public Adaptador(Context context){
         letras=new String[27];
         for(int i=0;i<letras.length;i++){
-            if(i==14){
+            if(i==context.getResources().getInteger(R.integer.catorce)){
                 letras[i]=context.getResources().getString(R.string.enie);
             }else{
-                if(i>14) letras[i]=context.getResources().getString(R.string.vacio)+(char)(context.getResources().getString(R.string.letra_a).charAt(0)+(i-1));
-                else letras[i]=context.getResources().getString(R.string.vacio)+(char)(context.getResources().getString(R.string.letra_a).charAt(0)+(i));
+                if(i>context.getResources().getInteger(R.integer.catorce)) letras[i]=context.getResources().getString(R.string.vacio)+(char)(context.getResources().getString(R.string.letra_a).charAt(context.getResources().getInteger(R.integer.cero))+(i-context.getResources().getInteger(R.integer.uno)));
+                else letras[i]=context.getResources().getString(R.string.vacio)+(char)(context.getResources().getString(R.string.letra_a).charAt(context.getResources().getInteger(R.integer.cero))+(i));
             }
         }
         inflater=LayoutInflater.from(context);

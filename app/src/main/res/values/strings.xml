@@ -40,5 +40,10 @@
     <string name="category" translatable="false">category</string>
     <string name="respuesta">"La respuesta era: "</string>
 
+    <!--Integers-->
+    <integer name="catorce">14</integer>
+    <integer name="uno">1</integer>
+    <integer name="cero">0</integer>
+
 
 </resources>

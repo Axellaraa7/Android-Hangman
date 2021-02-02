@@ -107,7 +107,7 @@ public class Hangman extends AppCompatActivity {
 
     public void letraSelected(View view){
         //La letra seleccionada la asignamos a la variable letra
-        char letra=((TextView)view).getText().toString().charAt(0);
+        char letra=((TextView)view).getText().toString().charAt(getResources().getInteger(R.integer.cero));
         //Deshabilitamos esa letra
         view.setEnabled(false);
         //Comprobamos si el usuario ha ganado
@@ -146,7 +146,7 @@ public class Hangman extends AppCompatActivity {
                 });
                 ad.show();
             }
-        }else if(part<lifes-1){
+        }else if(part<(lifes-getResources().getInteger(R.integer.uno))){
             toy[part].setVisibility(View.VISIBLE);
             part++;
         }else{
